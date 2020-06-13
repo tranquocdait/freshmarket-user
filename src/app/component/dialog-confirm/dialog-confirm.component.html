@@ -1,0 +1,20 @@
+<div class="card">
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>{{data.title}}</strong>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+    </h5>
+
+    <div class="card-body px-lg-5 pt-0">
+        <form class="text-center" style="color: #757575;" action="#!">
+            <div class="container md-2 mt-2">
+                <h6>{{data.content}}</h6>
+            </div>
+            <div class="container mt-2">
+                <button class="btn btn-outline-info btn-rounded waves-effect col-md-5" type="submit" id="btn_submit" (click)="onSubmit()">Xác nhận</button>
+                <button class="btn btn-outline-danger btn-rounded waves-effect col-md-5" type="submit" (click)="onClose()">Hủy</button>
+            </div>
+        </form>
+    </div>
+</div>

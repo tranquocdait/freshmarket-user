@@ -1,0 +1,44 @@
+<div class="card-body col-12" *ngIf="isLoadData">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <img class="card-img-top img-responsive round" src="{{data.avatarURL}}">
+                </div>
+                <h2 class="text-center">Thông tin cá nhân</h2>
+                <div class="card-body">
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-6 text-right">Tài khoản : </label>
+                        <label class="col-md-6"><b>{{data.userName}}</b></label>
+                    </div>
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-6 text-right">Mật khẩu : </label>
+                        <label class="col-md-3"><b>**********</b></label>
+                        <button class="btn col-md-3 text-left">
+                            <i class="fa fa-pencil-square-o" (click)='changePassword()' ngbTooltip="Thay đổi mật khẩu"
+                                placement="right">
+                            </i>
+                        </button>
+                    </div>
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-6 text-right">Họ tên: </label>
+                        <label class="col-md-6"><b>{{data.fullName}}</b></label>
+                    </div>
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-6 text-right">Số điện thoại : </label>
+                        <label class="col-md-6"><b>{{data.phoneNumber}}</b></label>
+                    </div>
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-6 text-right">Email : </label>
+                        <label class="col-md-6"><b>{{data.email}}</b></label>
+                    </div>
+                    <div class="row mb-2 mt-2">
+                        <div class="col text-center">
+                            <a class="btn btn-info ml-2" (click)="changeInfor()">Thay đổi thông tin</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

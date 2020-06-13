@@ -1,0 +1,21 @@
+.star {
+    position: relative;
+    display: inline-block;
+    font-size: 30px;
+    color: #d3d3d3;
+}
+.full {
+    color: #ffff00;
+}
+.half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #ffff00;
+}
+.card-text{
+    height: 100px !important;
+}
+.modal-content{
+    height: 230px !important;
+}

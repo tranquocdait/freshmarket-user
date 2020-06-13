@@ -1,0 +1,80 @@
+<h4>QUẢN LÝ BÀI ĐĂNG</h4>
+<div class="container">
+    <input #search class="form-control col-md-5" type="text" placeholder="Tìm kiếm sản phẩm mong muốn..."
+        aria-label="Search" (keyup.enter)="searchPost(search.value)">
+    <button class="btn" (click)="searchPost(search.value)"><i class="fa fa-search fa-lg pb-2"></i></button>
+    <button class="btn btn-success" id="add-post" (click)="addNewPost()">Viết bài đăng</button>
+</div>
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table-hover">
+
+    <ng-container matColumnDef="imageURL">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+            <span class="round"><img src="{{element.imageURLs[0].url}}" alt="user" width="50" height="50"></span>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="postId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mã bài đăng </th>
+        <td mat-cell *matCellDef="let element"> {{element.postId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="postName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tên bài đăng </th>
+        <td mat-cell *matCellDef="let element"> {{element.postName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nội dung </th>
+        <td mat-cell *matCellDef="let element" id='lim-des'> {{element.description|convertString:10}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="unitPrice">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit Price </th>
+        <td mat-cell *matCellDef="let element"> {{element.unitPrice|convertAmount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateOfPost">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày đăng </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateOfPost| date:"dd/MM/yyy"}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="province">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Thành phố/Tỉnh </th>
+        <td mat-cell *matCellDef="let element"> {{element.province.nameProvince|convertString:10}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="calculationUnit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Đơn vị tính</th>
+        <td mat-cell *matCellDef="let element"> {{element.calculationUnit.unitName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Danh mục </th>
+        <td mat-cell *matCellDef="let element"> {{element.category.nameCategory}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="viewPurchase">
+        <th mat-header-cell *matHeaderCellDef> Các đơn hàng </th>
+        <td mat-cell *matCellDef="let element">
+            <button class="btn" (click)='showInfo(element.postId)'><i class="fa fa-eye"></i></button>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> Chỉnh sửa </th>
+        <td mat-cell *matCellDef="let element">
+            <button class="btn" (click)='editPost(element)'><i class="fa fa-pencil-square-o"></i></button>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Xóa bài </th>
+        <td mat-cell *matCellDef="let element">
+            <button class="btn" (click)='deletePost(element)'><i class="fa fa-trash"></i></button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[10, 20, 40]" showFirstLastButtons></mat-paginator>

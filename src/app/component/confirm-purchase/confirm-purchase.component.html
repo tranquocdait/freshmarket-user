@@ -1,0 +1,48 @@
+<div class="card-body col-12">
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6">
+            <div class="card">
+                <img class="card-img-top img-responsive" src="{{imageURL}}" style="height: 350px;">
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="card">
+                <h2 class="text-center">Xác nhận đơn hàng</h2>
+                <div class="card-body">
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-3">Họ Tên : </label>
+                        <input class="form-control col-md-9" [(ngModel)]="name">
+                    </div>
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-3">Số điện thoại</label>
+                        <input class="form-control col-md-9" [(ngModel)]="phoneNumber">
+                    </div>
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-3">Địa chỉ :</label>
+                        <input class="form-control col-md-9" [(ngModel)]="address">
+                    </div>
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-3 md-1 mt-1">Đơn giá : </label>
+                        <label class="col-md-9 md-1 mt-1"><b>{{unitPrice|convertAmount}}/{{unitName}}</b></label>
+                    </div>
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-3">Số lượng : </label>
+                        <label class="col-md-9"><b>{{numberItem}}</b></label>
+                    </div>
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-3">Tổng tiền : </label>
+                        <label class="col-md-9"
+                            style="border-top:black outset ;"><b>{{totalPrice|convertAmount}}</b></label>
+                    </div>
+                    <div class="row mb-2 mt-2">
+                        <div class="col text-right">
+                            <a class="btn btn-info" (click)="confirmPurchase()">Xác nhận đơn hàng</a>
+                        </div>
+                        <div class="col text-left">
+                            <a class="btn btn-success" (click)="goBackInfoItem()">Quay về giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

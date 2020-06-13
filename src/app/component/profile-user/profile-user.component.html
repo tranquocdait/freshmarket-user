@@ -1,0 +1,69 @@
+<div class="card-body col-12" *ngIf="isLoadData">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <img class="card-img-top img-responsive round" src="{{data.avatarURL}}">
+                </div>
+                <h2 class="text-center">Thông tin cá nhân</h2>
+                <div class="card-body">
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-6 text-right">Tài khoản : </label>
+                        <label class="col-md-6"><b>{{data.userName}}</b></label>
+                    </div>
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-6 text-right">Họ tên: </label>
+                        <label class="col-md-6"><b>{{data.fullName}}</b></label>
+                    </div>
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-6 text-right">Số điện thoại : </label>
+                        <label class="col-md-6"><b>{{data.phoneNumber}}</b></label>
+                    </div>
+                    <div class="container md-1 mt-1">
+                        <label class="col-md-6 text-right">Email : </label>
+                        <label class="col-md-6"><b>{{data.email}}</b></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="container">
+            DANH SÁCH SẢN PHẨM
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-5ths col-xs-6" *ngFor="let post of dataList">
+                <div class="card" style="cursor: pointer;" (click)="showInfo(post)">
+                    <img class="card-img-top img-responsive img-cus" src="{{post.imageURLs[0].url|convertUrlImage}}"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">{{post.postName}}</h4>
+                        <!-- <p class="card-text">{{post.description}}</p> -->
+                        <div class="row">
+                            <div class="col col-cus"><i>{{post.province.nameProvince|convertString:10}}</i></div>
+                            <div class="col col-cus">
+                                <ngb-rating [(rate)]="post.averageRate" max='5' [readonly]="true">
+                                    <ng-template let-fill="fill" let-index="index">
+                                        <span class="star" [class.filled]="fill === 100"><span class="half"
+                                                [style.width.%]="fill">&#9733;</span>&#9733;</span>
+                                    </ng-template>
+                                </ngb-rating>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col" id="stype-amount"><b>{{post.unitPrice|convertAmount}}/1
+                                    {{post.calculationUnit.unitName}}</b></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <ngb-pagination class="d-flex justify-content-center" #numPages (click)="onChangePage(numPages.page)"
+                [(collectionSize)]="totalPage" [(page)]="page" [maxSize]="3" [rotate]="true" [ellipses]="false"
+                [boundaryLinks]="true"></ngb-pagination>
+        </div>
+    </div>
+</div>

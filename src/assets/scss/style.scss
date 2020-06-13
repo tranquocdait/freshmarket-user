@@ -1,0 +1,150 @@
+/*
+Template Name: Admin Pro Admin
+Author: Themedesigner
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+
+@import "variable";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import "app";
+@import "pages";
+@import "sidebar";
+@import "../scss/icons/font-awesome/css/font-awesome.min.css";
+@import "../scss/icons/simple-line-icons/css/simple-line-icons.css";
+@import "../scss/icons/themify-icons/themify-icons.css";
+@import "../scss/icons/material-design-iconic-font/css/materialdesignicons.min.css";
+@import "widgets";
+@import "grid";
+@import "responsive";
+@import "spinners.scss";
+@import "theme-settings.scss";
+// color css
+@import "colors/default-dark";
+.delete-modal {
+    .modal-dialog {
+        animation-name: example !important;
+        animation-duration: 0.4s !important;
+        width: 420px !important;
+    }
+}
+.login-modal {
+    .modal-dialog {
+        animation-name: example !important;
+        animation-duration: 0.4s !important;
+        width: 340px !important;
+    }
+}
+
+.td-number {
+    padding-right: 20px !important;
+}
+table {
+    width: 100%;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.round {
+    margin-left: 10px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+.container {
+    display: contents;
+}
+.card-header {
+    height: 50px;
+}
+.close {
+    padding: 4px 13px;
+    margin: 0;
+    margin-top: -16px;
+    margin-right: -9px;
+    opacity: 1 !important;
+    padding-bottom: 8px;
+    text-shadow: unset;
+    background-color: white;
+    &:hover {
+        background-color: red;
+        color: #fff;
+    }
+}
+#btn_submit {
+    margin-right: 10px;
+}
+.sum-pay {
+    border-top: black outset;
+}
+.user_card {
+    height: 400px;
+    width: 350px;
+    margin-top: 78px;
+    margin-bottom: auto;
+    background: #d7df01;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+
+.brand_logo_container {
+    position: absolute;
+    height: 170px;
+    width: 170px;
+    top: -75px;
+    border-radius: 50%;
+    background: #60a3bc;
+    padding: 10px;
+    text-align: center;
+}
+
+.brand_logo {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.form_container {
+    margin-top: 100px;
+}
+
+.login_btn {
+    width: 100%;
+    background: #c0392b !important;
+    color: white !important;
+}
+
+.login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.login_container {
+    padding: 0 2rem;
+}
+
+.input-group-text {
+    background: #c0392b !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+
+.input_user,
+.input_pass:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #c0392b !important;
+}

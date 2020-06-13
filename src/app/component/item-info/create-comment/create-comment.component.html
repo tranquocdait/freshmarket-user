@@ -1,0 +1,33 @@
+<div class="card">
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Đánh giá sản phẩm</strong>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clickClose()" id="btn">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </h5>
+    <div class="card-body px-lg-5 pt-0">
+        <div class="col col-12">
+            <div class="container md-1 mt-1">
+               <label class="col-md-2 text-left">Đánh giá :</label>
+                <ngb-rating class="col-md-3 text-left" [(rate)]="currentRate" max='5'>
+                    <ng-template let-fill="fill" let-index="index">
+                        <span class="star" [class.filled]="fill === 100"><span class="half"
+                                [style.width.%]="fill">&#9733;</span>&#9733;</span>
+                    </ng-template>
+                </ngb-rating>
+                <label class="col-md-7 text-left" *ngIf="checkRate()">
+                    <small style="color: red;">Bạn hãy đánh giá!</small>
+                </label>
+            </div>
+            <div class="container md-1 mt-1">
+                <textarea class="form-control col-md-12" rows="3" placeholder="Viết đánh giá ......" [(ngModel)]="commentContent"></textarea>
+            </div>
+            <div class="container text-center" style="display: block;">
+                <button class="btn btn-outline-info btn-rounded waves-effect
+                    col-md-4" type="submit" id="btn_submit" (click)="onSubmit()">Nhận xét</button>
+                <button class="btn btn-outline-danger btn-rounded waves-effect
+                    col-md-4" (click)="clickClose()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="card">
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong *ngIf="data.type === 'edit'">Thông tin đơn hàng</strong>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clickClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </h5>
+    <div class="card-body col-12">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="{{data.data.imageURL}}" alt="Card image cap">
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row ml-2 mb-2"><i class="mr-2">Tên khách hàng : </i><b>{{data.data.buyerName}}</b>
+                        </div>
+                        <div class="row ml-2 mb-2"><i class="mr-2">Địa chỉ: </i><b>{{data.data.address}}</b>
+                        </div>
+                        <div class="row ml-2 mb-2"><i class="mr-2">Số điện thoại:
+                            </i><b>{{data.data.phoneNumber}}</b></div>
+                        <div class="row ml-2 mb-2"><i class="mr-2">Tên bài đăng : </i><b>{{data.data.post.postName}}</b>
+                        </div>
+                        <div class="row ml-2 mb-2"><i class="mr-2">Đơn giá :
+                            </i><b>{{data.data.unitPrice|convertAmount}}
+                                VND/{{data.data.post.calculationUnit.unitName}}</b></div>
+                        <div class="row ml-2 mb-2"><i class="mr-2">Sô Lượng : </i><b>{{data.data.purchaseNumber}}</b>
+                        </div>
+                        <div class="row ml-2 mb-2" *ngIf="data.data.statusPurchase.id!==1"><i class="mr-2">Chi phí vận
+                                chuyển : </i><b>{{data.data.transportCost|convertAmount}}</b></div><br>
+                        <div class="container md-1 mt-1" *ngIf="data.data.statusPurchase.id===1">
+                            <label class="col-md-4 text-left">Vận chuyển: </label>
+                            <select class="form-control col-md-8" [(ngModel)]="transportType"
+                                (change)="onChangeTransportType()">
+                                <option [(value)]="item.id" *ngFor="let item of
+                                transportTypeList">{{item.transportationName}}</option>
+                            </select>
+                        </div>
+                        <div class="container md-1 mt-1" *ngIf="isTransport">
+                            <label class="col-md-4 text-right">Chi phí :</label>
+                            <input class="form-control col-md-8" [(ngModel)]="transportCost">
+                        </div>
+
+                        <div class="row ml-2 mb-2" style="border-top:black outset ;"><i class="mr-2">Tổng tiền :
+                            </i><b>{{data.data.unitPrice*data.data.purchaseNumber+data.data.transportCost|convertAmount}}</b>
+                        </div>
+                        <div class="row mb-2 text-center">
+                            <div class="col">
+                                <a class="btn btn-success ml-2" (click)="onSubmit(1)"
+                                    *ngIf="data.data.statusPurchase.id===1">Xác nhận đơn hàng</a>
+                                <a class="btn btn-success ml-2" (click)="onSubmit(2)"
+                                    *ngIf="data.data.statusPurchase.id===2">Đã giao hàng</a>
+                                <a class="btn btn-info ml-2" (click)="onSubmit(3)"
+                                    *ngIf="data.data.statusPurchase.id!==3&&data.data.statusPurchase.id!==4">Hủy đơn
+                                    hàng</a>
+                                <a class="btn btn-danger ml-2" (click)="clickClose()">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="card">
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong *ngIf="data.type === 'edit'">Chỉnh sửa đơn hàng</strong>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clickClose()" id="btn">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </h5>
+    <div class="text-center">
+        <img class="card-img-top img-responsive round" src="{{data.data.imageURL}}">
+        <div class="col text-center"><b>{{data.data.post.postName}}</b>
+        </div>
+        
+    </div>
+    <div class="card-body px-lg-5 pt-1 mt-1" *ngIf="isDataLoad">
+        <div class="text-center" *ngIf="!checkForm()">
+            <small style="color: red;">{{messageError}}</small>
+        </div>
+        <div class="col">
+            <label class="col-md-4 text-right"> Số lượng :</label>
+            <a class="btn btn-info" style="width: 8px;padding-right: 20px;" (click)="changeNumber('sub')">-</a>
+            <input type="text" class="form-control col-1 pt-1 ml-1 text-center" value="{{numberItem}}">
+            <a class="btn btn-info ml-1" style="width: 8px;padding-right: 20px;"
+                (click)="changeNumber('add')"><b>+</b></a>
+        </div>
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="text-center" style="color: #757575;" action="#!">
+            <div class="container md-1 mt-1">
+                <label class="col-md-4 text-right">Họ tên :</label>
+                <input class="form-control col-md-8" formControlName="buyerName" placeholder="Họ và tên">
+            </div>
+
+            <div class="container md-1 mt-1">
+                <label class="col-md-4 text-right">Địa chỉ :</label>
+                <input class="form-control col-md-8" formControlName="address" placeholder="Địa chỉ">
+            </div>
+            <div class="container md-1 mt-1">
+                <label class="col-md-4 text-right">Số điện thoại :</label>
+                <input class="form-control col-md-8" formControlName="phoneNumber" placeholder="08xx xxx xxx">
+            </div>
+
+            <div class="container md-1 mt-1">
+                <button class="btn btn-outline-info btn-rounded waves-effect
+                    col-md-4" type="submit" id="btn_submit">Xác nhận</button>
+                <button class="btn btn-outline-danger btn-rounded waves-effect
+                    col-md-4" (click)="clickClose()">Hủy</button>
+            </div>
+        </form>
+    </div>
+</div>

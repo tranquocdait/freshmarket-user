@@ -1,0 +1,81 @@
+<div class="row" *ngIf="checkLoadData">
+    <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <ngb-carousel class="text-center">
+                            <ng-template ngbSlide *ngFor="let imageURL of dataContent.imageURLs">
+                                <img src="{{imageURL.url}}" alt="Random first slide" style="height: 338px;">
+                            </ng-template>
+                        </ngb-carousel>
+                    </div>
+                    <!-- <img class="card-img-top img-responsive" src="{{dataContent.imageURLs[0].url}}" alt="Card image cap" style="height: 338px;"> -->
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{dataContent.postName}}</h4>
+                        <p class="card-text">{{dataContent.description}}</p>
+                        <div class="row ml-2 mb-2"><i class="mr-2">Cung cấp bởi : </i>
+                            <div class="text-primary">{{dataContent.userName}}</div>
+                            <button type="button" class="btn btn-info cus-view-infor" (click)="viewProfileUser()">Xem thông tin</button>
+                        </div>
+                        <div class="row ml-2 mb-2">
+                            <i class="mr-2">Đánh giá : </i>
+                            <ngb-rating [(rate)]="dataContent.averageRate" max='5' [readonly]="true">
+                                <ng-template let-fill="fill" let-index="index">
+                                    <span class="star" [class.filled]="fill === 100"><span class="half"
+                                            [style.width.%]="fill">&#9733;</span>&#9733;</span>
+                                </ng-template>
+                            </ngb-rating>
+                        </div>
+                        <div class="row ml-2 mb-2"><i class="mr-2">Địa chỉ : </i>{{dataContent.province.nameProvince}}
+                        </div>
+                        <div class="row ml-2 mb-2"><i class="mr-2">Giá : </i>{{dataContent.unitPrice|convertAmount}}/1
+                            {{dataContent.calculationUnit.unitName}}</div>
+                        <div class="row mb-2" *ngIf="dataContent.userId!==userId">
+                            <div class="col">
+                                <a class="btn btn-info" style="width: 8px;padding-right: 20px;"
+                                    (click)="changeNumber('sub')">-</a>
+                                <input type="text" class="form-control col-1 pt-1 ml-1" value="{{numberItem}}">
+                                <a class="btn btn-info ml-1" style="width: 8px;padding-right: 20px;"
+                                    (click)="changeNumber('add')"><b>+</b></a>
+                                <a class="btn btn-danger ml-2" (click)="purchaseItem()">Mua ngay</a>
+                                <a class="btn btn-success ml-2" (click)="addStorageCart()"><i
+                                        class="ti-shopping-cart-full"></i>Thêm vào giỏ hàng</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <h4>Nhận xét của khách hàng</h4>
+        <div class="card mb-1">
+            <div class="card-body">
+                <button type="button" class="btn btn-info" (click)="createComment()">Viết nhận xét</button>
+            </div>
+        </div>
+        <div class="card mb-1" *ngFor="let item of dataComment">
+            <div class="card-body">
+                <div class="row card-title">
+                    <div class="col col-2"><b>{{item.user.fullName}}</b></div>
+                    <div class="col col-2">
+                        <ngb-rating [(rate)]="item.rate" max='5' [readonly]="true">
+                            <ng-template let-fill="fill" let-index="index">
+                                <span class="star" [class.filled]="fill === 100"><span class="half"
+                                        [style.width.%]="fill">&#9733;</span>&#9733;</span>
+                            </ng-template>
+                        </ngb-rating>
+                    </div>
+                </div>
+                <blockquote id="collapseExample" [ngbCollapse]="isCollapsed" class="m-0">
+                    {{item.comment}}
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>

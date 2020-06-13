@@ -1,0 +1,48 @@
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+        <div class="user_card">
+            <div class="d-flex justify-content-center">
+                <div class="brand_logo_container">
+                    <img src="https://res.cloudinary.com/dnccnn3nx/image/upload/v1585586887/logo_common.jpg" class="brand_logo" alt="Logo">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center form_container">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="text-left" *ngIf="loginStatus">
+                        <small style="color: red;">Sai mật khẩu hoặc tài khoản!</small>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input #tt="ngbTooltip" ngbTooltip="The User Name field is required." placement="right" type="text" formControlName="userName" class="form-control input_user" value="" placeholder="username">
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-key"></i></span>
+                        </div>
+                        <input type="password" ngbTooltip="The Password must min length 8 character." placement="right" formControlName="password" class="form-control input_pass" value="" placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" formControlName="memmory" class="custom-control-input" id="customControlInline">
+                            <label class="custom-control-label" for="customControlInline">Remember me</label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3 login_container">
+                        <input type="submit" value="Login" class="btn login_btn" />
+                    </div>
+                </form>
+            </div>
+
+            <div class="mt-4">
+                <div class="d-flex justify-content-center links">
+                    Bạn chưa có tài khoản? <a (click)="onSignUp()" class="ml-2"  style="cursor: pointer;">Sign Up</a>
+                </div>
+                <div class="d-flex justify-content-center links">
+                    <a href="#">Quên mật khẩu?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<!-- ============================================================== -->
+<!-- toggle and nav items -->
+<!-- ============================================================== -->
+<ul class="navbar-nav mr-auto float-left">
+    <li (click)="toggleSidebar.emit()" class="nav-item m-l-10 d-block d-lg-none">
+        <a class="nav-link sidebartoggler text-muted waves-effect waves-dark" href="javascript:void(0)">
+            <i class="ti-menu"></i></a> </li>
+</ul>
+<ul class="navbar-nav my-lg-0 float-right">
+    <li class="nav-item" id="cart"> <button type="button" class="btn btn-info cus-but" (click)="toStorageCart()"><span
+                class="mdi mdi-cart mdi-24px"></span>
+            đơn hàng<span class="badge badge-light">{{number}}</span>
+        </button></li>
+    <li class="nav-item dropdown" ngbDropdown placement="bottom-right" *ngIf="checkLogin">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle text-muted waves-effect waves-dark"
+            href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                src="{{urlAvatar}}" alt="user" class="profile-pic"></a>
+        <div class="dropdown-menu" ngbDropdownMenu>
+            <ul class="dropdown-user">
+                <li><a (click)="onMyProfile()" style="cursor: pointer;"><i class="ti-user"></i> Thông tin cá nhân</a>
+                </li>
+                <li><a (click)="onAction('/component/list-user-post')" style="cursor: pointer;"><i
+                            class="ti-shopping-cart"></i>
+                        Bài đăng</a></li>
+                <!-- <li><a (click)="onAction('/component/list-item')" style="cursor: pointer;"><i class="ti-wallet"></i> Các
+                        đơn hàng</a></li> -->
+                <li role="separator" class="divider"></li>
+                <li ngbDropdown placement="bottom-right"><a ngbDropdownToggle>
+                        <i class="ti-angle-down" *ngIf="checkDown" (click)="changeDown('true')"></i>
+                        <i class="ti-angle-up" *ngIf="!checkDown" (click)="changeDown('false')"></i> Đơn hàng</a>
+                    <div class="dropdown-menu" ngbDropdownMenu style="left: 115px !important;">
+                        <ul class="dropdown-user" style="min-width: 120px !important;">
+                            <li><a (click)="onAction('/component/list-item')" style="cursor: pointer;"><i
+                                        class="fa fa-cart-arrow-down"></i> Bán</a>
+                            </li>
+                            <li><a (click)="onAction('/component/list-buy-item')" style="cursor: pointer;"><i
+                                        class="fa fa-cart-plus"></i> Mua</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li><a (click)="logout()" style="cursor: pointer;"><i class="fa fa-power-off"></i> Logout</a></li>
+            </ul>
+        </div>
+    </li>
+    <li class="nav-item dropdown" ngbDropdown placement="bottom-right" *ngIf="!checkLogin">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle text-muted waves-effect waves-dark"
+            href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                src="../assets/images/Default.png" alt="user" class="profile-pic"></a>
+        <div class="dropdown-menu" ngbDropdownMenu>
+            <ul class="dropdown-user">
+                <li><a (click)="onLogin()" style="cursor: pointer;"><i class="ti-user"></i> Đăng nhập</a></li>
+                <li><a (click)="onSignUp()" style="cursor: pointer;"><i class="fa fa-user-plus"></i> Tạo tài khoản</a>
+                </li>
+            </ul>
+        </div>
+    </li>
+</ul>

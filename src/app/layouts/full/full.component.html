@@ -1,0 +1,37 @@
+<div id="main-wrapper" [ngClass]="
+    {
+        'defaultdark': color == 'defaultdark',
+        'mini-sidebar': showMinisidebar
+    }
+">
+    <header class="topbar">
+        <nav class="d-flex top-navbar navbar-expand-md navbar-light">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html"><b>
+                        <img src="https://res.cloudinary.com/dnccnn3nx/image/upload/v1585586887/logo_common.jpg"  class="round" width="76px" alt="homepage" class="dark-logo" />
+                        <img src="assets/images/logo-light-icon.png" alt="homepage" class="light-logo" /></b>
+                    <span>
+                        Fresh market
+                    </span>
+                </a>
+            </div>
+            <div class="navbar-collapse">
+                <app-navigation class="w-100" (toggleSidebar)="toggleSidebar()"></app-navigation>
+            </div>
+        </nav>
+    </header>
+    <aside class="left-sidebar">
+        <div class="scroll-sidebar" [perfectScrollbar]="config">
+            <app-sidebar></app-sidebar>
+        </div>
+    </aside>
+    <div class="page-wrapper">
+        <div class="container-fluid" style="background: #E0F8F7;">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <footer class="footer">
+        Design by Tran Quoc Dai @Fresh martket© 2020
+    </footer>
+
+</div>

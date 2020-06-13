@@ -1,0 +1,25 @@
+.star {
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    color: #d3d3d3;
+}
+.full {
+    color: #ffff00;
+}
+.half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #ffff00;
+}
+.card-text{
+    //height: 100px !important;
+}
+.cus-view-infor{
+    height: 21px;
+    font-size: 10px;
+    padding: 3px 5px 10px 5px;
+    margin-left: 10px;
+}
+

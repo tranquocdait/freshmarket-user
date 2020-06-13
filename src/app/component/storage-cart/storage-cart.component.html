@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="row col-9">
+        <div class="col">
+            <div class="card mb-1" *ngFor="let storage of storageArr">
+                <div class="card-body pb-0">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-2 col-md-6">
+                            <div class="card">
+                                <img class="card-img-top img-responsive" src="{{storage.imageURL}}" alt="Card image cap"
+                                    style="height: 100px;">
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-1">{{storage.postName}}</h4>
+                                    <p class="card-text mb-1"><i class="mr-2">Nhà cung cấp : </i>{{storage.userName}}
+                                    </p>
+                                    <div class="row ml-2 mb-2"><i class="mr-2">Địa chỉ : </i>{{storage.province}}</div>
+                                    <div class="row ml-2 mb-2"><i class="mr-2">Giá : </i>{{storage.unitPrice|convertAmount}}/1
+                                        {{storage.unitName}}</div>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <a class="btn btn-info" style="width: 8px;padding-right: 20px;"
+                                                (click)="changeNumber('sub',storage)">-</a>
+                                            <input type="text" class="form-control col-1 pt-1 ml-1"
+                                                value="{{storage.numberItem}}">
+                                            <a class="btn btn-info ml-1" style="width: 8px;padding-right: 20px;"
+                                                (click)="changeNumber('add',storage)"><b>+</b></a>
+                                            <a class="btn btn-danger ml-2" (click)="purchaseItem(storage)">Mua ngay</a>
+                                            <a class="btn btn-success ml-2" (click)="removeStorageCart(storage)"><i
+                                                    class="ti-shopping-cart-full"></i>Xóa khỏi giỏ hàng</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col col-3">
+        <div class="card mb-1 total-color">
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="card">
+                        <div class="card-body total-color">
+                            <h4 class="card-title">Tổng tiền:</h4>
+                            <div class="row ml-2 mb-2 justify-content-right"><b>{{totalAmount|convertAmount}}</b>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <a class="btn btn-danger ml-2" (click)="paymentCart()">Tiến hành đặt hàng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

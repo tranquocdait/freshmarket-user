@@ -1,0 +1,63 @@
+<div class="card">
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong *ngIf="data.type === 'edit'">Chỉnh sửa thông tin các nhân</strong>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clickClose()" id="btn">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </h5>
+
+    <div class="card-body px-lg-5 pt-1 mt-1" *ngIf="isDataLoad">
+        <div class="text-center" *ngIf="!checkForm()">
+            <small style="color: red;">{{messageError}}</small>
+        </div>
+
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="text-center" style="color: #757575;" action="#!">
+            <div class="container md-1 mt-1">
+                <label class="col-md-4 text-right">Tài khoản</label>
+                <input class="form-control col-md-8" formControlName="userName" [readonly]="data.type==='edit'"
+                    placeholder="User name">
+            </div>
+            <div class="container md-1 mt-1">
+                <label class="col-md-4 text-right">Mật khẩu</label>
+                <input type="password" class="form-control col-md-8" formControlName="password" placeholder="Password">
+            </div>
+
+            <div class="container md-1 mt-1">
+                <label class="col-md-4 text-right">Nhập lại mật khẩu</label>
+                <input type="password" class="form-control col-md-8" formControlName="confirmPassword"
+                    placeholder="Confirm password">
+            </div>
+            <!-- <div class="container md-1 mt-1">
+                <label class="col-md-4 text-right">Role</label>
+                <select class="form-control col-md-8" formControlName="role">
+                    <option [value]="item.roleID" *ngFor="let item of
+                    roleList">{{item.roleName}}</option>
+                </select>
+            </div> -->
+
+            <div class="container md-1 mt-1">
+                <label class="col-md-4 text-right">Họ tên</label>
+                <input class="form-control col-md-8" formControlName="fullName" placeholder="Your name">
+            </div>
+            <div class="container md-1 mt-1">
+                <label class="col-md-4 text-right">Số điện thoại</label>
+                <input class="form-control col-md-8" formControlName="phoneNumber" placeholder="08xx xxx xxx">
+            </div>
+            <div class="container md-1 mt-1">
+                <label class="col-md-4 text-right">Email</label>
+                <input class="form-control col-md-8" formControlName="email" placeholder="name@example.com">
+            </div>
+            <div class="container md-1 mt-1">
+                <label class="col-md-4 text-right">Avatar</label>
+                <input type="file" accept="image/*" class="form-control col-md-8" formControlName="avatarURL"
+                    (change)='changeToBase64($event)'>
+            </div>
+            <div class="container md-1 mt-1">
+                <button class="btn btn-outline-info btn-rounded waves-effect
+                    col-md-4" type="submit" id="btn_submit" *ngIf="data.type === 'edit'">Xác nhận</button>
+                <button class="btn btn-outline-danger btn-rounded waves-effect
+                    col-md-4" (click)="clickClose()">Hủy</button>
+            </div>
+        </form>
+    </div>
+</div>

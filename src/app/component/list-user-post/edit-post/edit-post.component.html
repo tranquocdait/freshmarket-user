@@ -1,0 +1,74 @@
+<div class="card">
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong *ngIf="data.type === 'edit'">Edit </strong>
+        <strong *ngIf="data.type !== 'edit'">Đăng bài</strong>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clickClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </h5>
+
+    <div class="card-body px-lg-5 pt-0">
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="text-center" style="color: #757575;" action="#!">
+            <div class="container md-1 mt-1">
+                <label class="col-md-3 text-right">Tên bài đăng</label>
+                <input class="form-control col-md-9" formControlName="postName">
+            </div>
+            <div class="container md-1 mt-1">
+                <div class="text-left text-center" *ngIf="!checkAmount()">
+                    <small style="color: red;">Nhập sô tiền không đúng!</small>
+                </div>
+                <label class="col-md-3 text-right">Đơn giá</label>
+                <input class="form-control col-md-6 text-right" formControlName="unitPrice">
+                <label class="col-md-3 text-left">VND</label>
+            </div>
+            <div class="container md-1 mt-1">
+                <label class="col-md-3 text-right">Địa chỉ</label>
+                <input class="form-control col-md-9" formControlName="address">
+            </div>
+            <div class="container md-1 mt-1">
+                <div class="row">
+                    <label class="col-md-3 text-right">Mô tả</label>
+                    <textarea class="form-control col-md-9" rows="3" formControlName="description" style="max-width: 72%;
+                    margin-left: 9px;"></textarea>
+                </div>
+            </div>
+            <div class="container md-1 mt-1">
+                <label class="col-md-3 text-right">Thành phố</label>
+                <select class="form-control col-md-9" formControlName="province">
+                    <option [value]="item.id" *ngFor="let item of
+                    provinceList">{{item.nameProvince}}</option>
+                </select>
+            </div>
+            <div class="container md-1 mt-1">
+                <label class="col-md-3 text-right">Đơn vị tính</label>
+                <select class="form-control col-md-9" formControlName="calculationUnit">
+                    <option [value]="item.id" *ngFor="let item of
+                    calculationUnitList">{{item.unitName}}</option>
+                </select>
+            </div>
+            <div class="container md-1 mt-1">
+                <label class="col-md-3 text-right">Danh mục</label>
+                <select class="form-control col-md-9" formControlName="category">
+                    <option [value]="item.id" *ngFor="let item of
+                    categoryList">{{item.nameCategory}}</option>
+                </select>
+            </div>
+            <div class="container md-1 mt-1">
+                <label class="col-md-3 text-right">Hình ảnh</label>
+                <input type="file" accept="image/*" class="form-control col-md-9" formControlName="imageURL"
+                    (change)="onSelectFile($event)" multiple>
+            </div>
+            <div class=" mb-1 mt-1">
+                <img *ngFor='let url of urls' [src]="url" width="50" height="50">
+            </div>
+            <div class="container">
+                <button class="btn btn-outline-info btn-rounded waves-effect
+                    col-md-4" type="submit" id="btn_delete" *ngIf="data.type === 'edit'">Edit</button>
+                <button class="btn btn-outline-info btn-rounded waves-effect
+                    col-md-4" type="submit" id="btn_delete" *ngIf="data.type !== 'edit'">Đăng bài</button>
+                <button class="btn btn-outline-danger btn-rounded waves-effect
+                    col-md-4" (click)="clickClose()">Hủy</button>
+            </div>
+        </form>
+    </div>
+</div>
