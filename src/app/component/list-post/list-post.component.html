@@ -7,15 +7,15 @@
         </div>
         <div class="row mt-2">
             <div class="col-md-5ths col-xs-6" *ngFor="let post of dataList">
-                <div class="card" style="cursor: pointer;" (click)="showInfo(post)">
+                <div class="card shadow" style="cursor: pointer;" (click)="showInfo(post)">
                     <img class="card-img-top img-responsive" src="{{post.imageURLs[0].url|convertUrlImage}}"
-                        alt="Card image cap">
+                        alt="Card image cap" >
                     <div class="card-body">
-                        <h4 class="card-title">{{post.postName}}</h4>
+                        <h4 class="card-title">{{post.postName|convertString:18}}</h4>
                         <!-- <p class="card-text">{{post.description}}</p> -->
                         <div class="row">
                             <div class="col col-cus"><i>{{post.province.nameProvince|convertString:10}}</i></div>
-                            <div class="col col-cus">
+                            <div class="col">
                                 <ngb-rating [(rate)]="post.averageRate" max='5' [readonly]="true">
                                     <ng-template let-fill="fill" let-index="index">
                                         <span class="star" [class.filled]="fill === 100"><span class="half"

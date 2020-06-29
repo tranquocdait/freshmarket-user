@@ -39,7 +39,7 @@
                     <img class="card-img-top img-responsive img-cus" src="{{post.imageURLs[0].url|convertUrlImage}}"
                         alt="Card image cap">
                     <div class="card-body">
-                        <h4 class="card-title">{{post.postName}}</h4>
+                        <h4 class="card-title">{{post.postName|convertString:18}}</h4>
                         <!-- <p class="card-text">{{post.description}}</p> -->
                         <div class="row">
                             <div class="col col-cus"><i>{{post.province.nameProvince|convertString:10}}</i></div>

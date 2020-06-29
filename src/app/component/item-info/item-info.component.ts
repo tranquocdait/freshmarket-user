@@ -26,6 +26,7 @@ export class ItemInfoComponent implements OnInit {
     checkLoadData = false;
     checkUserRate: false;
     checkUserComment: false;
+    descriptions: string[];
     userId = 0;
     ngOnInit() {
     }
@@ -54,17 +55,32 @@ export class ItemInfoComponent implements OnInit {
                 post.province = element.province;
                 post.imageURLs = element.imagePosts;
                 post.category = element.category;
-                if (element.description.length < 300) {
-                    post.description = element.description;
-                } else {
-                    post.description = element.description.substr(0, 300) + '...';
-                }
+                post.description = element.description;
+                this.convertDescription(element.description);
                 post.calculationUnit = element.calculationUnit;
                 post.averageRate = Number.parseFloat(data.data.averageRate);
                 this.dataComment = data.data.userCommentDTOList;
                 this.dataContent = post;
                 this.blockUI.stop();
                 this.checkLoadData = true;
+            }
+        });
+    }
+
+    convertDescription(description: string): void {
+        if (description === null) {
+            this.descriptions = [];
+            return;
+        }
+        this.descriptions = [];
+        const arrString = description.split('-');
+        if (arrString.length === 1) {
+            this.descriptions.push(arrString[0]);
+            return;
+        }
+        arrString.forEach(element => {
+            if (element !== '') {
+                this.descriptions.push(' - ' + element);
             }
         });
     }

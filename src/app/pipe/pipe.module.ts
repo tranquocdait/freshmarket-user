@@ -3,6 +3,7 @@ import { ConvertAmountPipe } from './convert-amount.pipe';
 import { ConvertStringPipe } from './convert-string.pipe';
 import { TranslationStringPipe } from './translation-string.pipe';
 import { ConvertUrlImage } from './convert-url-image.pipe';
+import { DowlineStringPipe } from './dowline-string.pipe';
 
 
 @NgModule({
@@ -12,13 +13,15 @@ import { ConvertUrlImage } from './convert-url-image.pipe';
         ConvertAmountPipe,
         ConvertStringPipe,
         TranslationStringPipe,
-        ConvertUrlImage
+        ConvertUrlImage,
+        DowlineStringPipe
     ],
     declarations: [
         ConvertAmountPipe,
         ConvertStringPipe,
         TranslationStringPipe,
-        ConvertUrlImage
+        ConvertUrlImage,
+        DowlineStringPipe
     ],
     entryComponents: [
     ]

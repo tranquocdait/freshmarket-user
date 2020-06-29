@@ -123,7 +123,7 @@ export class EditPostComponent implements OnInit {
     createPost(): void {
         this.blockUI.start();
         const params: any = {
-            postId: this.editForm.value['postId'],
+            id: this.editForm.value['postId'],
             postName: this.editForm.value['postName'],
             userName: this.editForm.value['userName'],
             unitPrice: Number.parseFloat(this.editForm.value['unitPrice']),
@@ -153,7 +153,7 @@ export class EditPostComponent implements OnInit {
     editPost(): void {
         this.blockUI.start();
         const params: any = {
-            postId: this.editForm.value['postId'],
+            id: this.editForm.value['postId'],
             postName: this.editForm.value['postName'],
             userName: this.editForm.value['userName'],
             unitPrice: Number.parseFloat(this.editForm.value['unitPrice']),
@@ -171,7 +171,7 @@ export class EditPostComponent implements OnInit {
                     this.activeModal.close();
                     setTimeout(() => {
                         this.blockUI.stop();
-                    }, 500);
+                    }, 100);
                 }
             }
             );
@@ -182,15 +182,16 @@ export class EditPostComponent implements OnInit {
         return this.checkValidatorService.isNumber(this.editForm.value['unitPrice']);
     }
 
-    onSelectFile(event) {
+    onSelectFile(event): void {
         if (event.target.files && event.target.files[0]) {
             const filesAmount = event.target.files.length;
             for (let i = 0; i < filesAmount; i++) {
                 const reader = new FileReader();
-                reader.onload = () => {
-                    this.urls.push(event.target.result);
-                };
                 reader.readAsDataURL(event.target.files[i]);
+                reader.onload = (event2) => {
+                    const target: any = event2.target;
+                    this.urls.push(target.result);
+                };
             }
             console.log(this.urls);
         }

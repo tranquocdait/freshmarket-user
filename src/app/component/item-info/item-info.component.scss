@@ -7,19 +7,27 @@
 .full {
     color: #ffff00;
 }
+
 .half {
     position: absolute;
     display: inline-block;
     overflow: hidden;
     color: #ffff00;
 }
-.card-text{
-    //height: 100px !important;
+
+#card-cus {
+    font-size: 22px;
+    font-weight: 500;
 }
-.cus-view-infor{
+
+.cus-view-infor {
     height: 21px;
     font-size: 10px;
     padding: 3px 5px 10px 5px;
     margin-left: 10px;
 }
 
+#amount-cus {
+    font-weight: 400;
+    color: red;
+}

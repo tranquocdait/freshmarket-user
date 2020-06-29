@@ -1,6 +1,8 @@
 #stype-amount{
     margin-top: 8px;
     color: black;
+    font-weight: 400;
+    font-size: 16px;
 }
 .star {
     position: relative;
@@ -9,6 +11,7 @@
 }
 .col-cus {
     padding-right: 0px;
+    font-size: 15px;
 }
 .full {
     color: #ffff00;
@@ -31,8 +34,8 @@ img {
 .col-lg-5ths {
     position: relative;
     min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .col-xs-5ths {
