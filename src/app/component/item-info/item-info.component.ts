@@ -27,7 +27,11 @@ export class ItemInfoComponent implements OnInit {
     checkUserRate: false;
     checkUserComment: false;
     descriptions: string[];
+    dataList: PostElement[] = null;
     userId = 0;
+    arrPostId: string[];
+    arrPost1: any[];
+    arrPost2: any[];
     ngOnInit() {
     }
 
@@ -61,8 +65,97 @@ export class ItemInfoComponent implements OnInit {
                 post.averageRate = Number.parseFloat(data.data.averageRate);
                 this.dataComment = data.data.userCommentDTOList;
                 this.dataContent = post;
+                this.suggetPurchase();
                 this.blockUI.stop();
                 this.checkLoadData = true;
+            }
+        });
+    }
+
+    suggetPurchase(): void {
+        const url = 'posts/' + this.dataContent.category.id + '/0/category';
+        this.endpointFactory.getEndPointWithResponeHeader(url).subscribe(data => {
+            if (data.body.status === 'success') {
+                const temp = [];
+                data.body.data.forEach((elementInfo) => {
+                    const post = new PostElement();
+                    const element = elementInfo.post;
+                    post.postId = element.id;
+                    post.postName = element.postName;
+                    post.userName = element.user.userName;
+                    post.userElement = element.user;
+                    post.unitPrice = element.unitPrice;
+                    post.address = element.address;
+                    post.dateOfPost = new Date(element.dateOfPost[0], element.dateOfPost[1], element.dateOfPost[2]);
+                    post.province = element.province;
+                    post.imageURLs = element.imagePosts;
+                    post.category = element.category;
+                    if (element.description !== null) {
+                        if (element.description.length < 100) {
+                            post.description = element.description;
+                        } else {
+                            post.description = element.description.substr(0, 100) + '...';
+                        }
+                    } else {
+                        post.description = '';
+                    }
+                    post.calculationUnit = element.calculationUnit;
+                    post.averageRate = Number.parseFloat(elementInfo.averageRate);
+                    temp.push(post);
+                });
+                this.dataList = temp;
+            }
+        });
+        setTimeout(() => {
+            this.arrPostId = JSON.parse(this.localStoreManager.getArrPostSelected());
+            for (const postId of this.arrPostId) {
+                let check = true;
+                for (const post of this.dataList) {
+                    if (postId === post.postId) {
+                        check = false;
+                        break;
+                    }
+                }
+                if (check) {
+                    this.addPostToData(postId);
+                }
+            }
+        }, 3000);
+        setTimeout(() => this.setArrPost(), 4000);
+    }
+
+    setArrPost() {
+        this.arrPost1 = [];
+        this.arrPost2 = [];
+        this.dataList.forEach((post, i) => {
+            if (i < 5) {
+                this.arrPost1.push(post);
+            } else if (i >= 5 && i < 10) {
+                this.arrPost2.push(post);
+            }
+        });
+    }
+
+    addPostToData(postId: string): void {
+        this.endpointFactory.getEndPoint('posts/' + postId).subscribe(data => {
+            if (data.status === 'success') {
+                const post = new PostElement();
+                const element = data.data.post;
+                post.postId = element.id;
+                post.postName = element.postName;
+                post.userId = element.user.userID;
+                post.userName = element.user.userName;
+                post.userElement = element.user;
+                post.unitPrice = element.unitPrice;
+                post.address = element.address;
+                post.dateOfPost = new Date(element.dateOfPost[0], element.dateOfPost[1], element.dateOfPost[2]);
+                post.province = element.province;
+                post.imageURLs = element.imagePosts;
+                post.category = element.category;
+                post.description = element.description;
+                post.calculationUnit = element.calculationUnit;
+                post.averageRate = Number.parseFloat(data.data.averageRate);
+                this.dataList.push(post);
             }
         });
     }

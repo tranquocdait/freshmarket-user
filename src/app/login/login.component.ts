@@ -5,6 +5,7 @@ import { LocalStoreManager } from '../services/local-store-manager.service';
 import { NgbTooltip, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { EndpointFactory } from '../services/endpoint-factory.service';
 import { SignupComponent } from './signup/signup.component';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
     selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
     roleAdmin = 'admin';
     loginStatus = false;
     @ViewChild('tt', { static: true }) ttUsername: NgbTooltip;
+    @BlockUI() blockUI: NgBlockUI;
     constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder, private router: Router,
         private localStoreManager: LocalStoreManager, private endpointFactory: EndpointFactory, private modalService: NgbModal) {
         this.localStoreManager.removeToken();
@@ -37,6 +39,7 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit(): void {
+        this.blockUI.start();
         const params: any = {
             userName: this.loginForm.value['userName'],
             password: this.loginForm.value['password']
@@ -51,12 +54,15 @@ export class LoginComponent implements OnInit {
                             this.activeModal.close();
                             //location.reload();
                             this.localStoreManager.setCheckLogin(true);
+                            this.blockUI.stop();
                         } else {
                             this.loginFailed();
+                            this.blockUI.stop();
                         }
                     }
                 }, error => {
                     this.loginFailed();
+                    this.blockUI.stop();
                 }
                 );
             }

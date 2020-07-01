@@ -16,7 +16,27 @@ export class LocalStoreManager {
             storageCart: 'storageCart',
             checkLogin: 'checkLogin',
             userNameSelected: 'userNameSelected',
+            arrPostSelected: 'arrPostSelected'
         };
+
+
+    public setArrPostSelected(postSelected: string): void {
+        if (this.getArrPostSelected() === null) {
+            localStorage.setItem(this.reservedKeys.arrPostSelected, '[' + postSelected + ']');
+        } else {
+            const arr = JSON.parse(this.getArrPostSelected());
+            for (const element of arr) {
+                if (postSelected !== element) {
+                    arr.push(postSelected);
+                }
+            }
+            localStorage.setItem(this.reservedKeys.arrPostSelected, JSON.stringify(arr));
+        }
+    }
+
+    public getArrPostSelected(): string {
+        return localStorage.getItem(this.reservedKeys.arrPostSelected);
+    }
 
     public getUserNameSelected(): string {
         return localStorage.getItem(this.reservedKeys.userNameSelected);

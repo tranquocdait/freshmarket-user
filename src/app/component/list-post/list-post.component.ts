@@ -88,6 +88,7 @@ export class ListPostComponent implements OnInit, AfterContentChecked {
 
     showInfo(post: PostElement): void {
         this.localStoreManager.setPostSelected(post.postId);
+        this.localStoreManager.setArrPostSelected(post.postId);
         this.router.navigateByUrl('/component/item-info');
     }
 

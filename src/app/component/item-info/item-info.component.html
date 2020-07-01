@@ -82,3 +82,64 @@
         </div>
     </div>
 </div>
+<div class="row ">
+    <div class="col-12" style="margin-top:25px">
+        <h4>Nhận xét của khách hàng</h4>
+        <ngb-carousel class="text-center">
+            <ng-template ngbSlide *ngIf="arrPost1!==null&&arrPost1!==undefined&&arrPost1.length>0">
+                <div class="col-md-5ths col-xs-6" *ngFor="let post of arrPost1">
+                    <div class="card" style="cursor: pointer;" (click)="showInfo(post)">
+                        <img class="card-img-top img-responsive img-cus" src="{{post.imageURLs[0].url|convertUrlImage}}"
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">{{post.postName|convertString:18}}</h4>
+                            <div class="row">
+                                <div class="col col-cus"><i>{{post.province.nameProvince|convertString:10}}</i>
+                                </div>
+                                <div class="col col-cus">
+                                    <ngb-rating [(rate)]="post.averageRate" max='5' [readonly]="true">
+                                        <ng-template let-fill="fill" let-index="index">
+                                            <span class="star" [class.filled]="fill === 100"><span class="half"
+                                                    [style.width.%]="fill">&#9733;</span>&#9733;</span>
+                                        </ng-template>
+                                    </ngb-rating>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col stype-amount"><b>{{post.unitPrice|convertAmount}}/1
+                                        {{post.calculationUnit.unitName}}</b></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ngbSlide *ngIf="arrPost2!==null&&arrPost2!==undefined&&arrPost2.length>0">
+                <div class="col-md-5ths col-xs-6" *ngFor="let post of arrPost2">
+                    <div class="card" style="cursor: pointer;" (click)="showInfo(post)">
+                        <img class="card-img-top img-responsive img-cus" src="{{post.imageURLs[0].url|convertUrlImage}}"
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">{{post.postName|convertString:18}}</h4>
+                            <div class="row">
+                                <div class="col col-cus"><i>{{post.province.nameProvince|convertString:10}}</i>
+                                </div>
+                                <div class="col col-cus">
+                                    <ngb-rating [(rate)]="post.averageRate" max='5' [readonly]="true">
+                                        <ng-template let-fill="fill" let-index="index">
+                                            <span class="star" [class.filled]="fill === 100"><span class="half"
+                                                    [style.width.%]="fill">&#9733;</span>&#9733;</span>
+                                        </ng-template>
+                                    </ngb-rating>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col stype-amount"><b>{{post.unitPrice|convertAmount}}/1
+                                        {{post.calculationUnit.unitName}}</b></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+</div>

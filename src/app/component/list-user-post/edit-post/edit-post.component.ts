@@ -67,7 +67,7 @@ export class EditPostComponent implements OnInit {
         }
     }
 
-    modeAddNew() {
+    modeAddNew(): void {
         this.editForm = this.formBuilder.group({
             postId: ['', Validators.required],
             userName: ['', Validators.required],
@@ -82,7 +82,7 @@ export class EditPostComponent implements OnInit {
         });
     }
 
-    modeEdit() {
+    modeEdit(): void {
         this.editForm = this.formBuilder.group({
             postId: [this.data.data.postId, Validators.required],
             userName: [this.data.data.userName, Validators.required],

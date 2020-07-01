@@ -18,7 +18,6 @@ declare var $: any;
     styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit, AfterViewInit, AfterContentChecked {
-    @Output() toggleSidebar = new EventEmitter<void>();
     @Output() data = new EventEmitter();
     number: any;
     urlAvatar: string;

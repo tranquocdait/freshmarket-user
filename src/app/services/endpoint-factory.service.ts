@@ -9,7 +9,7 @@ import { stringify } from 'querystring';
 })
 
 export class EndpointFactory {
-    //baseUrl = 'http://localhost:8080/';
+    // baseUrl = 'http://localhost:8080/';
     baseUrl = 'https://freshmarket-app.herokuapp.com/';
     constructor(private httpclient: HttpClient, private localStoreManager: LocalStoreManager) {
 
