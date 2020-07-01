@@ -24,6 +24,7 @@ export class NavigationComponent implements OnInit, AfterViewInit, AfterContentC
     checkLogin = true;
     checkDown = true;
     public config: PerfectScrollbarConfigInterface = {};
+    @Output() toggleSidebar = new EventEmitter<void>();
     constructor(private modalService: NgbModal, private router: Router, private localStoreManager: LocalStoreManager,
         private endpointFactory: EndpointFactory) {
     }
