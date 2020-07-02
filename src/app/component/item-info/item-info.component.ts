@@ -120,7 +120,7 @@ export class ItemInfoComponent implements OnInit {
                     this.addPostToData(postId);
                 }
             }
-        }, 3000);
+        }, 3500);
         setTimeout(() => this.setArrPost(), 4000);
     }
 
