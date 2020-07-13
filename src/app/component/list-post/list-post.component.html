@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="margin-top: -15px;margin-left:-20px;">
     <div class="col-12">
         <div class="container">
             <input #search class="form-control col-md-5" type="text" placeholder="Tìm kiếm sản phẩm mong muốn..."
@@ -9,7 +9,7 @@
             <div class="col-md-5ths col-xs-6" *ngFor="let post of dataList">
                 <div class="card shadow" style="cursor: pointer;" (click)="showInfo(post)">
                     <img class="card-img-top img-responsive" src="{{post.imageURLs[0].url|convertUrlImage}}"
-                        alt="Card image cap" >
+                        alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">{{post.postName|convertString:18}}</h4>
                         <!-- <p class="card-text">{{post.description}}</p> -->

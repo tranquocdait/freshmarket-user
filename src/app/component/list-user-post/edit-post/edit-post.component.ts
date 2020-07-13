@@ -193,7 +193,7 @@ export class EditPostComponent implements OnInit {
                     this.urls.push(target.result);
                 };
             }
-            console.log(this.urls);
         }
     }
+
 }

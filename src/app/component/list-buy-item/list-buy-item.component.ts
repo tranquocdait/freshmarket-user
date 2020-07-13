@@ -10,6 +10,7 @@ import { LocalStoreManager } from '../../services/local-store-manager.service';
 import { PurchaseBuyInfoComponent } from './purchase-buy-info/purchase-buy-info.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { EditPurchaseComponent } from './edit-purchase/edit-purchase.component';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
     selector: 'app-list-buy-item',
@@ -22,6 +23,7 @@ export class ListBuyItemComponent implements OnInit {
     getUrl = 'purchases/buyer';
     displayedColumns: string[] = ['imageURL', 'purchaseId', 'postId', 'unitPrice', 'purchaseNumber', 'dateOfOrder',
         'statusPurchaseName', 'edit', 'view', 'delete'];
+    @BlockUI() blockUI: NgBlockUI;
     @ViewChild(MatSort, { static: true }) sort: MatSort;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     constructor(private modalService: NgbModal, private changeDetectorRefs: ChangeDetectorRef, private endpointFactory: EndpointFactory,
@@ -76,7 +78,7 @@ export class ListBuyItemComponent implements OnInit {
             this.dataSource = new MatTableDataSource(this.dataList);
             this.dataSource.sort = this.sort;
             this.dataSource.paginator = this.paginator;
-        }, 1000);
+        }, 2000);
     }
 
     deleteItem(element: any): void {
@@ -84,12 +86,16 @@ export class ListBuyItemComponent implements OnInit {
         modalRef.componentInstance.data = { title: 'Xác nhận xóa đơn hàng', content: 'Bạn muốn xóa đơn hàng đơn hàng?' };
         modalRef.componentInstance.output.subscribe((res) => {
             if (res === 'success') {
+                this.blockUI.start();
                 const params = element.purchaseId;
                 this.endpointFactory.deleteEndPoint(params, 'purchases/' + params).subscribe(data => {
                     if (data.status === 'success') {
                         this.setData();
+                        this.blockUI.stop();
                     }
+                    this.blockUI.stop();
                 }, error => {
+                    this.blockUI.stop();
                 });
             }
         });

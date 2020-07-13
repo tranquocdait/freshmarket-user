@@ -1,10 +1,10 @@
-
 import { Component, OnInit, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EndpointFactory } from '../../services/endpoint-factory.service';
 import { PostElement } from '../model/post.model';
 import { LocalStoreManager } from '../../services/local-store-manager.service';
 import { Router } from '@angular/router';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
     selector: 'app-list-post',
@@ -18,6 +18,7 @@ export class ListPostComponent implements OnInit, AfterContentChecked {
     page = 1;
     totalPage = 1;
     change = false;
+    @BlockUI() blockUI: NgBlockUI;
     constructor(private router: Router, private modalService: NgbModal, private changeDetectorRefs: ChangeDetectorRef,
         private endpointFactory: EndpointFactory, private localStoreManager: LocalStoreManager) {
         this.loadFisrtData();
@@ -29,7 +30,9 @@ export class ListPostComponent implements OnInit, AfterContentChecked {
         this.setUrl(0);
         this.loadData();
     }
+
     loadData(): void {
+        this.blockUI.start();
         this.endpointFactory.getEndPointWithResponeHeader(this.getUrl).subscribe(data => {
             if (data.body.status === 'success') {
                 const temp = [];
@@ -62,7 +65,10 @@ export class ListPostComponent implements OnInit, AfterContentChecked {
                     this.page = data.headers.get('pageCurrent') + 1;
                 });
                 this.dataList = temp;
+                this.blockUI.stop();
             }
+        }, error => {
+            this.blockUI.stop();
         });
     }
 
@@ -99,5 +105,5 @@ export class ListPostComponent implements OnInit, AfterContentChecked {
         this.setUrl(pageChange - 1);
         this.loadData();
     }
-}
 
+}

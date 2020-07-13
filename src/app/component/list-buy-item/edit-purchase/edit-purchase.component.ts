@@ -28,7 +28,6 @@ export class EditPurchaseComponent implements OnInit {
     }
 
     createForm() {
-        console.log(this.data);
         this.numberItem = this.data.data.purchaseNumber;
         this.editForm = this.formBuilder.group({
             buyerName: [this.data.data.buyerName, Validators.required],

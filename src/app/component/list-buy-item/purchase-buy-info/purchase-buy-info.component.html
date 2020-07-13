@@ -24,7 +24,7 @@
                         <div class="row ml-2 mb-2"><i class="mr-2">Tên bài đăng : </i><b>{{data.data.post.postName}}</b>
                         </div>
                         <div class="row ml-2 mb-2"><i class="mr-2">Đơn giá : </i><b>{{data.data.unitPrice|convertAmount}}
-                                VND/{{data.data.post.calculationUnit.unitName}}</b></div>
+                                /{{data.data.post.calculationUnit.unitName}}</b></div>
                         <div class="row ml-2 mb-2"><i class="mr-2">Sô Lượng : </i><b>{{data.data.purchaseNumber}}</b></div>
                         <div class="row ml-2 mb-2" *ngIf="data.data.statusPurchase.id!==1"><i class="mr-2">Chi phí vận
                             chuyển : </i><b>{{data.data.transportCost|convertAmount}}</b></div><br>

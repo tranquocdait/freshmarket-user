@@ -80,28 +80,30 @@ export class ItemInfoComponent implements OnInit {
                 data.body.data.forEach((elementInfo) => {
                     const post = new PostElement();
                     const element = elementInfo.post;
-                    post.postId = element.id;
-                    post.postName = element.postName;
-                    post.userName = element.user.userName;
-                    post.userElement = element.user;
-                    post.unitPrice = element.unitPrice;
-                    post.address = element.address;
-                    post.dateOfPost = new Date(element.dateOfPost[0], element.dateOfPost[1], element.dateOfPost[2]);
-                    post.province = element.province;
-                    post.imageURLs = element.imagePosts;
-                    post.category = element.category;
-                    if (element.description !== null) {
-                        if (element.description.length < 100) {
-                            post.description = element.description;
+                    if (this.localStoreManager.getPostSelected().toString() !== element.id.toString()) {
+                        post.postId = element.id;
+                        post.postName = element.postName;
+                        post.userName = element.user.userName;
+                        post.userElement = element.user;
+                        post.unitPrice = element.unitPrice;
+                        post.address = element.address;
+                        post.dateOfPost = new Date(element.dateOfPost[0], element.dateOfPost[1], element.dateOfPost[2]);
+                        post.province = element.province;
+                        post.imageURLs = element.imagePosts;
+                        post.category = element.category;
+                        if (element.description !== null) {
+                            if (element.description.length < 100) {
+                                post.description = element.description;
+                            } else {
+                                post.description = element.description.substr(0, 100) + '...';
+                            }
                         } else {
-                            post.description = element.description.substr(0, 100) + '...';
+                            post.description = '';
                         }
-                    } else {
-                        post.description = '';
+                        post.calculationUnit = element.calculationUnit;
+                        post.averageRate = Number.parseFloat(elementInfo.averageRate);
+                        temp.push(post);
                     }
-                    post.calculationUnit = element.calculationUnit;
-                    post.averageRate = Number.parseFloat(elementInfo.averageRate);
-                    temp.push(post);
                 });
                 this.dataList = temp;
             }
@@ -110,6 +112,9 @@ export class ItemInfoComponent implements OnInit {
             this.arrPostId = JSON.parse(this.localStoreManager.getArrPostSelected());
             for (const postId of this.arrPostId) {
                 let check = true;
+                if (this.localStoreManager.getPostSelected().toString() === postId.toString()) {
+                    continue;
+                }
                 for (const post of this.dataList) {
                     if (postId === post.postId) {
                         check = false;
@@ -120,8 +125,8 @@ export class ItemInfoComponent implements OnInit {
                     this.addPostToData(postId);
                 }
             }
-        }, 3500);
-        setTimeout(() => this.setArrPost(), 4000);
+        }, 2000);
+        setTimeout(() => this.setArrPost(), 3000);
     }
 
     setArrPost() {
@@ -240,4 +245,10 @@ export class ItemInfoComponent implements OnInit {
         this.localStoreManager.setUserNameSelected(this.dataContent.userName);
         this.router.navigateByUrl('/component/profile-user');
     }
+
+    showInfo(post: PostElement): void {
+        this.localStoreManager.setPostSelected(post.postId);
+        location.reload();
+    }
+
 }

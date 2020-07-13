@@ -25,12 +25,17 @@ export class LocalStoreManager {
             localStorage.setItem(this.reservedKeys.arrPostSelected, '[' + postSelected + ']');
         } else {
             const arr = JSON.parse(this.getArrPostSelected());
+            let check = true;
             for (const element of arr) {
-                if (postSelected !== element) {
-                    arr.push(postSelected);
+                if (postSelected === element) {
+                    check = false;
+                    break;
                 }
             }
-            localStorage.setItem(this.reservedKeys.arrPostSelected, JSON.stringify(arr));
+            if (check) {
+                arr.push(postSelected);
+                localStorage.setItem(this.reservedKeys.arrPostSelected, JSON.stringify(arr));
+            }
         }
     }
 

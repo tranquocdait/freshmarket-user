@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title" id="card-cus">{{dataContent.postName}}</h4>
-                        <p class="card-text"><b *ngFor="let item of descriptions">{{item}}<br></b></p>
+                        <p class="card-text"><span  *ngFor="let item of descriptions">{{item}}<br></span></p>
                         <div class="row ml-2 mb-2"><i class="mr-2">Cung cấp bởi : </i>
                             <div class="text-primary">{{dataContent.userName}}</div>
                             <button type="button" class="btn btn-info cus-view-infor" (click)="viewProfileUser()">Xem
@@ -40,13 +40,13 @@
                         </div>
                         <div class="row mb-2" *ngIf="dataContent.userId!==userId">
                             <div class="col">
-                                <a class="btn btn-info" style="width: 8px;padding-right: 20px;"
+                                <a class="btn btn-info button-count-item"
                                     (click)="changeNumber('sub')">-</a>
                                 <input type="text" class="form-control col-1 pt-1 ml-1" value="{{numberItem}}">
-                                <a class="btn btn-info ml-1" style="width: 8px;padding-right: 20px;"
+                                <a class="btn btn-info ml-1 button-count-item"
                                     (click)="changeNumber('add')"><b>+</b></a>
-                                <a class="btn btn-danger ml-2" (click)="purchaseItem()">Mua ngay</a>
-                                <a class="btn btn-success ml-2" (click)="addStorageCart()"><i
+                                <a class="btn btn-danger ml-2 button-color-cus" (click)="purchaseItem()">Mua ngay</a>
+                                <a class="btn btn-success ml-2 button-color-cus" (click)="addStorageCart()"><i
                                         class="ti-shopping-cart-full"></i>Thêm vào giỏ hàng</a>
                             </div>
                         </div>
@@ -84,8 +84,8 @@
 </div>
 <div class="row ">
     <div class="col-12" style="margin-top:25px">
-        <h4>Nhận xét của khách hàng</h4>
-        <ngb-carousel class="text-center">
+        <h4>Gợi ý sản phẩm</h4>
+        <ngb-carousel class="text-left">
             <ng-template ngbSlide *ngIf="arrPost1!==null&&arrPost1!==undefined&&arrPost1.length>0">
                 <div class="col-md-5ths col-xs-6" *ngFor="let post of arrPost1">
                     <div class="card" style="cursor: pointer;" (click)="showInfo(post)">

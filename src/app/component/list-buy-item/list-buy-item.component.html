@@ -5,7 +5,7 @@
 <div class="container">
     <h3>QUẢN LÍ ĐƠN HÀNG MUA</h3>
 </div>
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table-hover">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table-hover" >
     <ng-container matColumnDef="imageURL">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
@@ -18,7 +18,7 @@
     </ng-container>
     <ng-container matColumnDef="postId">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên mặt hàng</th>
-        <td mat-cell *matCellDef="let element"> {{element.post.postName}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.post.postName|convertString:40}} </td>
     </ng-container>
     <ng-container matColumnDef="unitPrice">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Đơn giá</th>
